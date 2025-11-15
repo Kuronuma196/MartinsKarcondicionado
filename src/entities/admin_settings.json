@@ -1,0 +1,52 @@
+
+{
+  "name": "admin_settings",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["setting_key", "setting_value", "created_at"],
+        "properties": {
+          "setting_key": {
+            "bsonType": "string",
+            "description": "Chave da configuração"
+          },
+          "setting_value": {
+            "bsonType": "string",
+            "description": "Valor da configuração"
+          },
+          "category": {
+            "bsonType": "string",
+            "enum": ["payment", "shipping", "general", "notifications", "security"],
+            "description": "Categoria da configuração"
+          },
+          "description": {
+            "bsonType": "string",
+            "description": "Descrição da configuração"
+          },
+          "is_active": {
+            "bsonType": "bool",
+            "description": "Se a configuração está ativa"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do registro"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

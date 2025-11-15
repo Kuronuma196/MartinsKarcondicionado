@@ -1,0 +1,130 @@
+
+{
+  "name": "service_equipment",
+  "title": "Equipamentos de Serviço",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "string",
+      "title": "ID"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "title": "Nome do Equipamento",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "title": "Descrição"
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "title": "Categoria",
+      "options": [
+        {"value": "ferramentas", "label": "Ferramentas"},
+        {"value": "equipamentos", "label": "Equipamentos"},
+        {"value": "materiais", "label": "Materiais"},
+        {"value": "consumiveis", "label": "Consumíveis"}
+      ]
+    },
+    {
+      "name": "purchase_price",
+      "type": "number",
+      "title": "Preço de Compra"
+    },
+    {
+      "name": "current_value",
+      "type": "number",
+      "title": "Valor Atual"
+    },
+    {
+      "name": "depreciation_rate",
+      "type": "number",
+      "title": "Taxa de Depreciação (%)"
+    },
+    {
+      "name": "maintenance_cost",
+      "type": "number",
+      "title": "Custo de Manutenção"
+    },
+    {
+      "name": "usage_hours",
+      "type": "number",
+      "title": "Horas de Uso"
+    },
+    {
+      "name": "cost_per_hour",
+      "type": "number",
+      "title": "Custo por Hora"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "title": "Status",
+      "options": [
+        {"value": "disponivel", "label": "Disponível"},
+        {"value": "em_uso", "label": "Em Uso"},
+        {"value": "manutencao", "label": "Em Manutenção"},
+        {"value": "inativo", "label": "Inativo"}
+      ]
+    },
+    {
+      "name": "purchase_date",
+      "type": "string",
+      "title": "datetime"
+    },
+    {
+      "name": "last_maintenance",
+      "type": "string",
+      "title": "datetime"
+    },
+    {
+      "name": "next_maintenance",
+      "type": "string",
+      "title": "datetime"
+    },
+    {
+      "name": "supplier",
+      "type": "string",
+      "title": "Fornecedor"
+    },
+    {
+      "name": "serial_number",
+      "type": "string",
+      "title": "Número de Série"
+    },
+    {
+      "name": "warranty_expiry",
+      "type": "string",
+      "title": "datetime"
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "title": "Localização"
+    },
+    {
+      "name": "responsible_admin",
+      "type": "string",
+      "title": "Administrador Responsável"
+    },
+    {
+      "name": "notes",
+      "type": "string",
+      "title": "Observações"
+    },
+    {
+      "name": "created_at",
+      "type": "string",
+      "title": "datetime"
+    },
+    {
+      "name": "updated_at",
+      "type": "string",
+      "title": "datetime"
+    }
+  ]
+}

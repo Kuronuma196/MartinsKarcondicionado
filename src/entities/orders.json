@@ -1,0 +1,90 @@
+
+{
+  "name": "orders",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["user_id", "order_number", "items", "total_amount", "status", "payment_status", "created_at"],
+        "properties": {
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID do usuário que fez o pedido"
+          },
+          "order_number": {
+            "bsonType": "string",
+            "description": "Número único do pedido"
+          },
+          "items": {
+            "bsonType": "array",
+            "description": "Itens do pedido",
+            "items": {
+              "bsonType": "object",
+              "properties": {
+                "product_id": {"bsonType": "string"},
+                "product_name": {"bsonType": "string"},
+                "quantity": {"bsonType": "int", "minimum": 1},
+                "unit_price": {"bsonType": "number", "minimum": 0},
+                "total_price": {"bsonType": "number", "minimum": 0}
+              }
+            }
+          },
+          "total_amount": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Valor total do pedido"
+          },
+          "shipping_fee": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Taxa de entrega"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["pending", "confirmed", "processing", "shipped", "delivered", "cancelled"],
+            "description": "Status do pedido"
+          },
+          "payment_status": {
+            "bsonType": "string",
+            "enum": ["pending", "paid", "failed", "refunded", "partially_refunded"],
+            "description": "Status do pagamento"
+          },
+          "payment_method": {
+            "bsonType": "string",
+            "enum": ["credit_card", "pix", "bank_transfer", "cash"],
+            "description": "Método de pagamento"
+          },
+          "shipping_address": {
+            "bsonType": "object",
+            "description": "Endereço de entrega"
+          },
+          "tracking_code": {
+            "bsonType": "string",
+            "description": "Código de rastreamento"
+          },
+          "notes": {
+            "bsonType": "string",
+            "description": "Observações do pedido"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do registro"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

@@ -1,0 +1,62 @@
+
+{
+  "name": "cart_items",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["user_id", "productId", "quantity", "price", "createdAt"],
+        "properties": {
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID do usuário"
+          },
+          "productId": {
+            "bsonType": "string",
+            "description": "ID do produto"
+          },
+          "productName": {
+            "bsonType": "string",
+            "description": "Nome do produto"
+          },
+          "productImage": {
+            "bsonType": "string",
+            "description": "Imagem do produto"
+          },
+          "quantity": {
+            "bsonType": "int",
+            "minimum": 1,
+            "description": "Quantidade do produto"
+          },
+          "price": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Preço unitário"
+          },
+          "totalPrice": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Preço total do item"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do item"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

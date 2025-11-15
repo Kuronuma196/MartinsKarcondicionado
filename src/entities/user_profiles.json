@@ -1,0 +1,78 @@
+
+{
+  "name": "user_profiles",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["user_id", "created_at"],
+        "properties": {
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID do usuário vinculado"
+          },
+          "full_name": {
+            "bsonType": "string",
+            "description": "Nome completo"
+          },
+          "phone": {
+            "bsonType": "string",
+            "description": "Telefone"
+          },
+          "cpf": {
+            "bsonType": "string",
+            "description": "CPF"
+          },
+          "birth_date": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de nascimento"
+          },
+          "address": {
+            "bsonType": "object",
+            "description": "Endereço completo",
+            "properties": {
+              "street": {"bsonType": "string"},
+              "number": {"bsonType": "string"},
+              "complement": {"bsonType": "string"},
+              "neighborhood": {"bsonType": "string"},
+              "city": {"bsonType": "string"},
+              "state": {"bsonType": "string"},
+              "zip_code": {"bsonType": "string"}
+            }
+          },
+          "preferences": {
+            "bsonType": "object",
+            "description": "Preferências do usuário",
+            "properties": {
+              "newsletter": {"bsonType": "bool"},
+              "sms_notifications": {"bsonType": "bool"},
+              "email_notifications": {"bsonType": "bool"}
+            }
+          },
+          "avatar_url": {
+            "bsonType": "string",
+            "description": "URL do avatar"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do registro"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

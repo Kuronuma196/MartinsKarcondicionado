@@ -1,0 +1,84 @@
+
+{
+  "name": "appointments",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["clientName", "clientPhone", "clientEmail", "serviceId", "appointmentDate", "status", "createdAt"],
+        "properties": {
+          "clientName": {
+            "bsonType": "string",
+            "minLength": 2,
+            "description": "Nome do cliente"
+          },
+          "clientPhone": {
+            "bsonType": "string",
+            "description": "Telefone do cliente"
+          },
+          "clientEmail": {
+            "bsonType": "string",
+            "description": "Email do cliente"
+          },
+          "serviceId": {
+            "bsonType": "string",
+            "description": "ID do serviço solicitado"
+          },
+          "serviceName": {
+            "bsonType": "string",
+            "description": "Nome do serviço"
+          },
+          "appointmentDate": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data e hora do agendamento"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["pendente", "confirmado", "em-andamento", "concluido", "cancelado"],
+            "description": "Status do agendamento"
+          },
+          "address": {
+            "bsonType": "object",
+            "description": "Endereço do atendimento"
+          },
+          "notes": {
+            "bsonType": "string",
+            "description": "Observações do agendamento"
+          },
+          "totalPrice": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Valor total do serviço"
+          },
+          "paymentStatus": {
+            "bsonType": "string",
+            "enum": ["pendente", "pago", "parcial", "cancelado"],
+            "description": "Status do pagamento"
+          },
+          "technicianNotes": {
+            "bsonType": "string",
+            "description": "Observações do técnico"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do agendamento"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

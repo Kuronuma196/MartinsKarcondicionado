@@ -1,0 +1,77 @@
+
+{
+  "name": "contacts",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["name", "email", "phone", "subject", "message", "status", "createdAt"],
+        "properties": {
+          "name": {
+            "bsonType": "string",
+            "minLength": 2,
+            "description": "Nome do contato"
+          },
+          "email": {
+            "bsonType": "string",
+            "description": "Email do contato"
+          },
+          "phone": {
+            "bsonType": "string",
+            "description": "Telefone do contato"
+          },
+          "subject": {
+            "bsonType": "string",
+            "description": "Assunto da mensagem"
+          },
+          "message": {
+            "bsonType": "string",
+            "minLength": 10,
+            "description": "Mensagem do contato"
+          },
+          "category": {
+            "bsonType": "string",
+            "enum": ["orcamento", "suporte", "reclamacao", "elogio", "duvida", "outros"],
+            "description": "Categoria da mensagem"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["novo", "lido", "respondido", "fechado"],
+            "description": "Status da mensagem"
+          },
+          "priority": {
+            "bsonType": "string",
+            "enum": ["baixa", "media", "alta", "urgente"],
+            "description": "Prioridade da mensagem"
+          },
+          "response": {
+            "bsonType": "string",
+            "description": "Resposta da empresa"
+          },
+          "respondedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data da resposta"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do contato"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

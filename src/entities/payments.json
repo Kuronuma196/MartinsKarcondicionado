@@ -1,0 +1,81 @@
+
+{
+  "name": "payments",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["user_id", "order_id", "amount", "payment_method", "status", "created_at"],
+        "properties": {
+          "user_id": {
+            "bsonType": "string",
+            "description": "ID do usuário"
+          },
+          "order_id": {
+            "bsonType": "string",
+            "description": "ID do pedido relacionado"
+          },
+          "transaction_id": {
+            "bsonType": "string",
+            "description": "ID da transação no gateway"
+          },
+          "payment_gateway": {
+            "bsonType": "string",
+            "enum": ["mercadopago", "pagseguro", "stripe", "paypal"],
+            "description": "Gateway de pagamento utilizado"
+          },
+          "amount": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Valor do pagamento"
+          },
+          "payment_method": {
+            "bsonType": "string",
+            "enum": ["credit_card", "pix", "bank_transfer", "cash"],
+            "description": "Método de pagamento"
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": ["pending", "processing", "approved", "rejected", "cancelled", "refunded"],
+            "description": "Status do pagamento"
+          },
+          "gateway_response": {
+            "bsonType": "object",
+            "description": "Resposta completa do gateway"
+          },
+          "refund_amount": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Valor reembolsado"
+          },
+          "refund_reason": {
+            "bsonType": "string",
+            "description": "Motivo do reembolso"
+          },
+          "refund_date": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data do reembolso"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do registro"
+          },
+          "created_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updated_at": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}

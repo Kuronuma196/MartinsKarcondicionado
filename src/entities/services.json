@@ -1,0 +1,66 @@
+
+{
+  "name": "services",
+  "options": {
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["name", "description", "price", "duration", "category", "isActive", "createdAt"],
+        "properties": {
+          "name": {
+            "bsonType": "string",
+            "description": "Nome do serviço"
+          },
+          "description": {
+            "bsonType": "string",
+            "description": "Descrição detalhada do serviço"
+          },
+          "price": {
+            "bsonType": "number",
+            "minimum": 0,
+            "description": "Preço do serviço"
+          },
+          "duration": {
+            "bsonType": "int",
+            "minimum": 15,
+            "description": "Duração em minutos"
+          },
+          "category": {
+            "bsonType": "string",
+            "enum": ["instalacao", "manutencao", "limpeza", "reparo", "consultoria"],
+            "description": "Categoria do serviço"
+          },
+          "isActive": {
+            "bsonType": "bool",
+            "description": "Se o serviço está ativo"
+          },
+          "imageUrl": {
+            "bsonType": "string",
+            "description": "URL da imagem do serviço"
+          },
+          "features": {
+            "bsonType": "array",
+            "description": "Lista de características do serviço"
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Criador do serviço"
+          },
+          "createdAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de criação"
+          },
+          "updatedAt": {
+            "bsonType": "string",
+            "title": "datetime",
+            "description": "Data de atualização"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "validationLevel": "moderate",
+    "validationAction": "warn"
+  }
+}
