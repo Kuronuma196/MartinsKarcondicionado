@@ -51,23 +51,24 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="bg-white shadow-lg sticky top-0 z-40">
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/30 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]">
         {/* Top Bar */}
-        <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white py-2">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center">
-                  <Phone className="h-4 w-4 mr-1" />
+        <div className="relative overflow-hidden bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 text-white py-2">
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,white_0,transparent_40%),radial-gradient(circle_at_85%_80%,white_0,transparent_35%)]" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex flex-col sm:flex-row justify-between items-center text-sm gap-2">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <a href="tel:+5543988379365" className="inline-flex items-center rounded-full bg-white/15 px-3 py-1.5 hover:bg-white/25 transition">
+                  <Phone className="h-4 w-4 mr-1.5" />
                   <span>(43) 98837-9365</span>
-                </div>
-                <div className="flex items-center">
-                  <Mail className="h-4 w-4 mr-1" />
-                  <span>martinskarcondicionado@gmail.com</span>
-                </div>
+                </a>
+                <a href="mailto:martinskarcondicionado@gmail.com" className="inline-flex items-center rounded-full bg-white/15 px-3 py-1.5 hover:bg-white/25 transition">
+                  <Mail className="h-4 w-4 mr-1.5" />
+                  <span className="max-w-[180px] truncate sm:max-w-none">martinskarcondicionado@gmail.com</span>
+                </a>
               </div>
-              <div className="flex items-center mt-1 sm:mt-0">
-                <MapPin className="h-4 w-4 mr-1" />
+              <div className="inline-flex items-center rounded-full bg-white/15 px-3 py-1.5">
+                <MapPin className="h-4 w-4 mr-1.5" />
                 <span>Londrina, PR</span>
               </div>
             </div>
@@ -75,25 +76,22 @@ const Header: React.FC = () => {
         </div>
 
         {/* Main Header */}
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="flex flex-col items-center">
-                  <div className="relative mb-1">
-                    <img
-                      src="/Logo2.png"
-                      alt="Martins Refrigeração Logo"
-                      className="h-10 w-10 object-contain"  style={{
-    width: "73px",        // aumenta aqui
-    height: "auto",
-    marginLeft: "30px",    // empurra pra direita
-  }}
-                    />
-                  </div>
-                 
-                </div>
+            <Link to="/" className="group flex items-center gap-3">
+              <div className="rounded-2xl p-2 bg-gradient-to-br from-emerald-100 to-blue-100 group-hover:from-emerald-200 group-hover:to-blue-200 transition">
+                <img
+                  src="/Logo2.png"
+                  alt="Martins Refrigeração Logo"
+                  className="h-12 w-12 object-contain"
+                />
+              </div>
+              <div className="hidden sm:block leading-tight">
+                <p className="text-lg font-extrabold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                  Martins Refrigeração
+                </p>
+                <p className="text-xs text-gray-500 font-medium tracking-wide">Climatização com garantia</p>
               </div>
             </Link>
 
