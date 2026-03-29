@@ -161,7 +161,7 @@ const Home: React.FC = () => {
                 Conforto <span className="text-blue-300">Térmico</span> Para Sua Vida
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 leading-relaxed">
-                Especialistas em climatização há mais de 15 anos. Instalação, manutenção e reparo 
+                Especialistas em climatização há mais de 4 anos. Instalação, manutenção e reparo 
                 de ar-condicionado com garantia e qualidade incomparáveis.
               </p>
               
@@ -180,6 +180,18 @@ const Home: React.FC = () => {
                   <Phone className="h-5 w-5 mr-2" />
                   (43) 98837-9365
                 </a>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-3 pt-2">
+                <div className="bg-white/15 border border-white/20 rounded-lg px-3 py-2 text-sm text-center">
+                  Resposta em até 15 min
+                </div>
+                <div className="bg-white/15 border border-white/20 rounded-lg px-3 py-2 text-sm text-center">
+                  Atendimento em Londrina e região
+                </div>
+                <div className="bg-white/15 border border-white/20 rounded-lg px-3 py-2 text-sm text-center">
+                  Parcelamento facilitado
+                </div>
               </div>
 
               <div className="grid grid-cols-3 gap-6 pt-8">
