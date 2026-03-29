@@ -83,7 +83,7 @@ const Header: React.FC = () => {
                 <div className="flex flex-col items-center">
                   <div className="relative mb-1">
                     <img
-                      src="/logo2.png"
+                      src="/Logo2.png"
                       alt="Martins Refrigeração Logo"
                       className="h-10 w-10 object-contain"  style={{
     width: "73px",        // aumenta aqui
