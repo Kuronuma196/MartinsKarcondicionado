@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import {Menu, X, Phone, Mail, MapPin, ShoppingCart, User, Settings, Package, ClipboardList, LogOut, UserCheck, Search} from 'lucide-react'
+import {Menu, X, MapPin, ShoppingCart, User, Settings, Package, ClipboardList, LogOut, UserCheck, Search, Clock3, Cloud} from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import SearchResults from './SearchResults'
 
@@ -11,6 +11,7 @@ const Header: React.FC = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [showSearchResults, setShowSearchResults] = useState(false)
+  const [currentDateTime, setCurrentDateTime] = useState('')
   const location = useLocation()
   const { user, isAuthenticated, signIn, signOut } = useAuth()
 
@@ -49,35 +50,66 @@ const Header: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    const formatter = new Intl.DateTimeFormat('pt-BR', {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'America/Sao_Paulo'
+    })
+
+    const updateDateTime = () => setCurrentDateTime(formatter.format(new Date()))
+    updateDateTime()
+    const timer = setInterval(updateDateTime, 60000)
+
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <>
-      <header className="bg-white shadow-lg sticky top-0 z-40">
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/30 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]">
         {/* Top Bar */}
-        <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white py-2">
+        <div className="bg-zinc-800 text-zinc-100 border-b border-zinc-700/70">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center">
-                  <Phone className="h-4 w-4 mr-1" />
-                  <span>(43) 98837-9365</span>
-                </div>
-                <div className="flex items-center">
-                  <Mail className="h-4 w-4 mr-1" />
-                  <span>martinskarcondicionado@gmail.com</span>
-                </div>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 py-1.5 text-xs sm:text-sm">
+              <div className="inline-flex items-center gap-2">
+                <Clock3 className="h-3.5 w-3.5 text-emerald-300" />
+                <span className="capitalize">{currentDateTime} BRT</span>
               </div>
-              <div className="flex items-center mt-1 sm:mt-0">
-                <MapPin className="h-4 w-4 mr-1" />
-                <span>Londrina, PR</span>
+              <div className="flex items-center gap-4">
+                <div className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5 text-blue-300" />
+                  <span>Londrina, Paraná, Brasil</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5">
+                  <Cloud className="h-3.5 w-3.5 text-sky-300" />
+                  <span>Clima: Nublado</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Main Header */}
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
+            <Link to="/" className="group flex items-center gap-3">
+              <div className="rounded-2xl p-2 bg-gradient-to-br from-emerald-100 to-blue-100 group-hover:from-emerald-200 group-hover:to-blue-200 transition">
+                <img
+                  src="/Logo2.png"
+                  alt="Martins Refrigeração Logo"
+                  className="h-12 w-12 object-contain"
+                />
+              </div>
+              <div className="hidden sm:block leading-tight">
+                <p className="text-lg font-extrabold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                  Martins Refrigeração
+                </p>
+                <p className="text-xs text-gray-500 font-medium tracking-wide">Climatização com garantia</p>
             <Link to="/" className="flex items-center space-x-3">
               <div className="relative">
                 <div className="flex flex-col items-center">
