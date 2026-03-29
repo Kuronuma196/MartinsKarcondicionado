@@ -110,6 +110,22 @@ const Header: React.FC = () => {
                   Martins Refrigeração
                 </p>
                 <p className="text-xs text-gray-500 font-medium tracking-wide">Climatização com garantia</p>
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="flex flex-col items-center">
+                  <div className="relative mb-1">
+                    <img
+                      src="/Logo2.png"
+                      alt="Martins Refrigeração Logo"
+                      className="h-10 w-10 object-contain"  style={{
+    width: "73px",        // aumenta aqui
+    height: "auto",
+    marginLeft: "30px",    // empurra pra direita
+  }}
+                    />
+                  </div>
+                 
+                </div>
               </div>
             </Link>
 
