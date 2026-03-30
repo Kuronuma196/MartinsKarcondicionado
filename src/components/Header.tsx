@@ -490,24 +490,37 @@ const Header: React.FC = () => {
       <div className="hidden md:block bg-gradient-to-r from-blue-800 via-indigo-800 to-violet-800 text-white border-y border-indigo-300/40">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-2 gap-3">
-            <div className="flex items-center gap-4 lg:gap-5 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
-              {publicQuickLinks.map((item) => (
-                <Link key={item.label} to={item.path} className="text-white/85 hover:text-white transition-colors">
-                  {item.label}
-                </Link>
-              ))}
+            <div className="flex items-center gap-6 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
+              <div className="inline-flex items-center gap-3">
+                <span className="rounded-full bg-white/15 px-2 py-1 text-[10px] font-semibold tracking-wider text-white/90">Público</span>
+                {publicQuickLinks.map((item) => (
+                  <Link key={item.label} to={item.path} className="text-white/85 hover:text-white transition-colors">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
 
-              {isAuthenticated && userQuickLinks.map((item) => (
-                <Link key={item.label} to={item.path} className="text-blue-100 hover:text-white transition-colors">
-                  {item.label}
-                </Link>
-              ))}
+              {isAuthenticated && (
+                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
+                  <span className="rounded-full bg-blue-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-blue-100">Cliente</span>
+                  {userQuickLinks.map((item) => (
+                    <Link key={item.label} to={item.path} className="text-blue-100 hover:text-white transition-colors">
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
 
-              {isAdmin && adminQuickLinks.map((item) => (
-                <Link key={item.label} to={item.path} className="text-violet-100 hover:text-white transition-colors">
-                  {item.label}
-                </Link>
-              ))}
+              {isAdmin && (
+                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
+                  <span className="rounded-full bg-violet-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-violet-100">Admin</span>
+                  {adminQuickLinks.map((item) => (
+                    <Link key={item.label} to={item.path} className="text-violet-100 hover:text-white transition-colors">
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="hidden xl:flex items-center gap-5 text-sm text-white/85 shrink-0">
