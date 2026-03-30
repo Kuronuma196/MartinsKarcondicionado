@@ -33,13 +33,28 @@ const Header: React.FC = () => {
     { path: '/admin/equipamentos', label: 'Equipamentos', icon: Settings },
   ]
 
-  const quickAccessMenu = [
-    { label: 'Fundador', path: '/fundador' },
-    { label: 'Equipe Familiar', path: '/equipe-familiar' },
-    { label: 'Experiência', path: '/experiencia' },
-    { label: 'Satisfação 93%', path: '/satisfacao' },
-    { label: 'Dúvidas', path: '/duvidas' },
-    { label: 'Suporte', path: '/contato' },
+  const isAdmin = user?.email === 'kuronumadeal@gmail.com' || user?.email === 'martinskarcondicionado@gmail.com'
+
+  const publicQuickLinks = [
+    { label: 'Sobre', path: '/sobre' },
+    { label: 'Serviços', path: '/servicos' },
+    { label: 'Produtos', path: '/produtos' },
+    { label: 'Agendar', path: '/agendamento' },
+    { label: 'Contato', path: '/contato' },
+  ]
+
+  const userQuickLinks = [
+    { label: 'Meu Perfil', path: '/perfil' },
+    { label: 'Meus Pedidos', path: '/meus-pedidos' },
+    { label: 'Carrinho', path: '/carrinho' },
+  ]
+
+  const adminQuickLinks = [
+    { label: 'Painel', path: '/admin' },
+    { label: 'Pedidos', path: '/admin/pedidos' },
+    { label: 'Produtos', path: '/admin/produtos' },
+    { label: 'Usuários', path: '/admin/usuarios' },
+    { label: 'Equipamentos', path: '/admin/equipamentos' },
   ]
 
   const handleSearch = (e: React.FormEvent) => {
@@ -470,6 +485,39 @@ const Header: React.FC = () => {
           )}
         </div>
       </header>
+
+      {/* Third Bar - Role-based Navigation */}
+      <div className="hidden md:block bg-gradient-to-r from-blue-800 via-indigo-800 to-violet-800 text-white border-y border-indigo-300/40">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between py-2 gap-3">
+            <div className="flex items-center gap-4 lg:gap-5 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
+              {publicQuickLinks.map((item) => (
+                <Link key={item.label} to={item.path} className="text-white/85 hover:text-white transition-colors">
+                  {item.label}
+                </Link>
+              ))}
+
+              {isAuthenticated && userQuickLinks.map((item) => (
+                <Link key={item.label} to={item.path} className="text-blue-100 hover:text-white transition-colors">
+                  {item.label}
+                </Link>
+              ))}
+
+              {isAdmin && adminQuickLinks.map((item) => (
+                <Link key={item.label} to={item.path} className="text-violet-100 hover:text-white transition-colors">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="hidden xl:flex items-center gap-5 text-sm text-white/85 shrink-0">
+              <a href="tel:+5543988379365" className="hover:text-white transition-colors">Contato</a>
+              <Link to="/contato" className="hover:text-white transition-colors">Ajuda</Link>
+              <Link to="/carrinho" className="hover:text-white transition-colors">Carrinho</Link>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Search Results Modal */}
       {showSearchResults && searchTerm.trim() && (
