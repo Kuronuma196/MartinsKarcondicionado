@@ -526,7 +526,16 @@ const Header: React.FC = () => {
             <div className="hidden xl:flex items-center gap-5 text-sm text-white/85 shrink-0">
               <a href="tel:+5543988379365" className="hover:text-white transition-colors">Contato</a>
               <Link to="/contato" className="hover:text-white transition-colors">Ajuda</Link>
-              <Link to="/carrinho" className="hover:text-white transition-colors">Carrinho</Link>
+              {isAuthenticated ? (
+                <Link to="/carrinho" className="hover:text-white transition-colors">Carrinho</Link>
+              ) : (
+                <button
+                  onClick={signIn}
+                  className="hover:text-white transition-colors"
+                >
+                  Entrar para ações
+                </button>
+              )}
             </div>
           </div>
         </div>
