@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import {Award, Users, Shield, Clock, Heart, Target, Zap, CheckCircle, Star, Phone, Mail, MapPin} from 'lucide-react'
+import {Award, Users, Shield, Heart, Target, Zap, CheckCircle, Star, Phone, Mail, MapPin} from 'lucide-react'
 
 const About: React.FC = () => {
   const values = [
@@ -32,9 +32,9 @@ const About: React.FC = () => {
   ]
 
   const achievements = [
-    { number: '5+', label: 'Anos de Experiência' },
-    { number: '450+', label: 'Clientes Atendidos' },
-    { number: '100%', label: 'Satisfação Garantida' },
+    { number: '3+', label: 'Anos de Experiência' },
+    { number: 'Familiar', label: 'Equipe Técnica' },
+    { number: '93%', label: 'Satisfação Garantida' },
     { number: '24h', label: 'Suporte Disponível' }
   ]
 
@@ -49,16 +49,16 @@ const About: React.FC = () => {
 
   const teamMembers = [
     {
-      name: 'Martins',
+      name: 'Carlos Kuronuma',
       role: 'Fundador & Técnico Especialista',
-      experience: '15+ anos',
+      experience: '3 anos',
       specialties: ['Instalação', 'Diagnóstico', 'Sistemas Comerciais']
     },
     {
-      name: 'Equipe Técnica',
-      role: 'Técnicos Certificados',
-      experience: '8+ anos',
-      specialties: ['Manutenção', 'Reparo', 'Atendimento']
+      name: 'Equipe Técnica Familiar',
+      role: 'Atendimento Familiar',
+      experience: '3 anos',
+      specialties: ['Manutenção', 'Reparo', 'Suporte próximo']
     }
   ]
 
@@ -77,7 +77,7 @@ const About: React.FC = () => {
               Sobre a Martins
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              5 anos de experiência proporcionando conforto térmico e qualidade de vida
+              3 anos de experiência proporcionando conforto térmico e qualidade de vida
             </p>
             <div className="flex flex-wrap justify-center gap-8 mt-12">
               {achievements.map((achievement, index) => (
@@ -108,20 +108,20 @@ const About: React.FC = () => {
             >
               <h2 className="text-4xl font-bold text-gray-900">Nossa História</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                A Martins Refrigeração nasceu em 2009 com o sonho de proporcionar conforto térmico 
+                A Martins Refrigeração nasceu com o sonho de proporcionar conforto térmico 
                 e qualidade de vida para famílias e empresas em Londrina e região. Fundada pelo 
-                técnico especialista Martins, a empresa começou como um pequeno negócio familiar 
+                técnico especialista Carlos Kuronuma, a empresa começou como um pequeno negócio familiar 
                 focado em excelência técnica e atendimento personalizado.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Ao longo de mais de 15 anos, evoluímos para nos tornar uma referência em 
+                Ao longo de 3 anos, evoluímos para nos tornar uma referência em 
                 climatização, sempre mantendo nossos valores fundamentais: qualidade, 
                 confiança e compromisso com a satisfação do cliente.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Hoje, atendemos mais de 5.000 clientes satisfeitos, oferecendo desde 
-                instalações residenciais até projetos comerciais complexos, sempre com 
-                a mesma dedicação e cuidado que nos trouxe até aqui.
+                Atualmente, seguimos com equipe técnica familiar, oferecendo desde 
+                instalações residenciais até suporte de manutenção com proximidade, sempre com 
+                dedicação total para manter 93% de satisfação garantida.
               </p>
             </motion.div>
 
