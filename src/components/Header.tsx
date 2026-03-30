@@ -34,12 +34,12 @@ const Header: React.FC = () => {
   ]
 
   const quickAccessMenu = [
-    { label: 'Instalação', path: '/servicos' },
-    { label: 'Manutenção', path: '/servicos' },
-    { label: 'Produtos', path: '/produtos' },
-    { label: 'Agendamento', path: '/agendamento' },
-    { label: 'Promoções', path: '/produtos' },
-    { label: 'Sobre', path: '/sobre' },
+    { label: 'Fundador', path: '/fundador' },
+    { label: 'Equipe Familiar', path: '/equipe-familiar' },
+    { label: 'Experiência', path: '/experiencia' },
+    { label: 'Satisfação 93%', path: '/satisfacao' },
+    { label: 'Dúvidas', path: '/duvidas' },
+    { label: 'Suporte', path: '/contato' },
   ]
 
   const handleSearch = (e: React.FormEvent) => {
@@ -131,20 +131,20 @@ const Header: React.FC = () => {
     <>
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/30 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]">
         {/* Top Bar */}
-        <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 text-white border-b border-emerald-400/40">
+        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-violet-700 text-white border-b border-indigo-300/40">
           <div className="container mx-auto px-4">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 py-1.5 text-xs sm:text-sm">
               <div className="inline-flex items-center gap-2 min-w-0">
-                <Clock3 className="h-3.5 w-3.5 text-emerald-100 shrink-0" />
+                <Clock3 className="h-3.5 w-3.5 text-blue-100 shrink-0" />
                 <span className="capitalize">{currentDateTime} BRT</span>
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <div className="inline-flex items-center gap-1.5 min-w-0">
-                  <MapPin className="h-3.5 w-3.5 text-blue-100 shrink-0" />
+                  <MapPin className="h-3.5 w-3.5 text-indigo-100 shrink-0" />
                   <span>Londrina, Paraná, Brasil</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 min-w-0">
-                  <Cloud className="h-3.5 w-3.5 text-cyan-100 shrink-0" />
+                  <Cloud className="h-3.5 w-3.5 text-violet-100 shrink-0" />
                   <span>
                     Clima: {weatherLabel}
                     {temperature !== null ? `, ${temperature}°C` : ''}
@@ -387,7 +387,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Secondary Navigation Strip */}
-          <div className="hidden md:block bg-gradient-to-r from-emerald-700 via-teal-700 to-blue-700 text-white border-t border-emerald-300/40 mt-3 rounded-lg">
+          <div className="hidden md:block bg-gradient-to-r from-blue-800 via-indigo-800 to-violet-800 text-white border-t border-indigo-300/40 mt-3 rounded-lg">
             <div className="px-3 lg:px-4">
               <div className="flex items-center justify-between py-2 gap-3">
                 <div className="flex items-center gap-4 lg:gap-5 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">

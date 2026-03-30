@@ -14,6 +14,11 @@ import Products from './pages/Products'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Appointments from './pages/Appointments'
+import Founder from './pages/Founder'
+import FamilyTeam from './pages/FamilyTeam'
+import Experience from './pages/Experience'
+import Satisfaction from './pages/Satisfaction'
+import Faq from './pages/Faq'
 
 // User Pages
 import Cart from './pages/Cart'
@@ -66,6 +71,11 @@ function App() {
               <Route path="/sobre" element={<About />} />
               <Route path="/contato" element={<Contact />} />
               <Route path="/agendamento" element={<Appointments />} />
+              <Route path="/fundador" element={<Founder />} />
+              <Route path="/equipe-familiar" element={<FamilyTeam />} />
+              <Route path="/experiencia" element={<Experience />} />
+              <Route path="/satisfacao" element={<Satisfaction />} />
+              <Route path="/duvidas" element={<Faq />} />
 
               {/* Protected User Routes */}
               <Route path="/carrinho" element={
