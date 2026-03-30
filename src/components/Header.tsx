@@ -12,6 +12,8 @@ const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [currentDateTime, setCurrentDateTime] = useState('')
+  const [weatherLabel, setWeatherLabel] = useState('Nublado')
+  const [temperature, setTemperature] = useState<number | null>(null)
   const location = useLocation()
   const { user, isAuthenticated, signIn, signOut } = useAuth()
 
@@ -77,25 +79,76 @@ const Header: React.FC = () => {
     return () => clearInterval(timer)
   }, [])
 
+  useEffect(() => {
+    const weatherCodeMap: Record<number, string> = {
+      0: 'Céu limpo',
+      1: 'Principalmente limpo',
+      2: 'Parcialmente nublado',
+      3: 'Nublado',
+      45: 'Neblina',
+      48: 'Neblina com geada',
+      51: 'Garoa fraca',
+      53: 'Garoa moderada',
+      55: 'Garoa intensa',
+      61: 'Chuva fraca',
+      63: 'Chuva moderada',
+      65: 'Chuva forte',
+      71: 'Neve fraca',
+      73: 'Neve moderada',
+      75: 'Neve forte',
+      80: 'Pancadas fracas',
+      81: 'Pancadas moderadas',
+      82: 'Pancadas fortes',
+      95: 'Trovoadas',
+    }
+
+    const loadWeather = async () => {
+      try {
+        const response = await fetch(
+          'https://api.open-meteo.com/v1/forecast?latitude=-23.3045&longitude=-51.1696&current=weather_code,temperature_2m&timezone=America%2FSao_Paulo'
+        )
+        const data = await response.json()
+        const code = data?.current?.weather_code as number | undefined
+        const temp = data?.current?.temperature_2m as number | undefined
+
+        if (typeof code === 'number' && weatherCodeMap[code]) {
+          setWeatherLabel(weatherCodeMap[code])
+        }
+        if (typeof temp === 'number') {
+          setTemperature(Math.round(temp))
+        }
+      } catch (error) {
+        console.error('Não foi possível carregar o clima atual:', error)
+      }
+    }
+
+    loadWeather()
+    const weatherTimer = setInterval(loadWeather, 30 * 60 * 1000)
+    return () => clearInterval(weatherTimer)
+  }, [])
+
   return (
     <>
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/30 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]">
         {/* Top Bar */}
-        <div className="bg-zinc-800 text-zinc-100 border-b border-zinc-700/70">
+        <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 text-white border-b border-emerald-400/40">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 py-1.5 text-xs sm:text-sm">
-              <div className="inline-flex items-center gap-2">
-                <Clock3 className="h-3.5 w-3.5 text-emerald-300" />
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 py-1.5 text-xs sm:text-sm">
+              <div className="inline-flex items-center gap-2 min-w-0">
+                <Clock3 className="h-3.5 w-3.5 text-emerald-100 shrink-0" />
                 <span className="capitalize">{currentDateTime} BRT</span>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="inline-flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5 text-blue-300" />
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                <div className="inline-flex items-center gap-1.5 min-w-0">
+                  <MapPin className="h-3.5 w-3.5 text-blue-100 shrink-0" />
                   <span>Londrina, Paraná, Brasil</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5">
-                  <Cloud className="h-3.5 w-3.5 text-sky-300" />
-                  <span>Clima: Nublado</span>
+                <div className="inline-flex items-center gap-1.5 min-w-0">
+                  <Cloud className="h-3.5 w-3.5 text-cyan-100 shrink-0" />
+                  <span>
+                    Clima: {weatherLabel}
+                    {temperature !== null ? `, ${temperature}°C` : ''}
+                  </span>
                 </div>
               </div>
             </div>
@@ -334,22 +387,22 @@ const Header: React.FC = () => {
           </div>
 
           {/* Secondary Navigation Strip */}
-          <div className="hidden md:block bg-zinc-900 text-zinc-100 border-t border-zinc-800 mt-3">
-            <div className="px-4">
-              <div className="flex items-center justify-between py-2">
-                <div className="flex items-center gap-5 text-xs lg:text-sm uppercase tracking-wide">
+          <div className="hidden md:block bg-gradient-to-r from-emerald-700 via-teal-700 to-blue-700 text-white border-t border-emerald-300/40 mt-3 rounded-lg">
+            <div className="px-3 lg:px-4">
+              <div className="flex items-center justify-between py-2 gap-3">
+                <div className="flex items-center gap-4 lg:gap-5 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
                   {quickAccessMenu.map((item) => (
                     <Link
                       key={item.label}
                       to={item.path}
-                      className="text-zinc-300 hover:text-white transition-colors"
+                      className="text-white/85 hover:text-white transition-colors"
                     >
                       {item.label}
                     </Link>
                   ))}
                 </div>
 
-                <div className="hidden lg:flex items-center gap-5 text-sm text-zinc-300">
+                <div className="hidden xl:flex items-center gap-5 text-sm text-white/85 shrink-0">
                   <a href="tel:+5543988379365" className="hover:text-white transition-colors">Contato</a>
                   <Link to="/contato" className="hover:text-white transition-colors">Ajuda</Link>
                   <Link to="/carrinho" className="hover:text-white transition-colors">Carrinho</Link>
