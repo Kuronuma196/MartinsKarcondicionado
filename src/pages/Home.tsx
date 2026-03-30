@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import {ArrowRight, Phone, Star, Shield, Award, Users, Clock, CheckCircle, Snowflake, Settings, Zap, MessageCircleDashed as MessageCircle, Calendar, Wrench, ThermometerSun, Wind, Droplets} from 'lucide-react'
+import {ArrowRight, Phone, Star, Shield, Award, Users, Clock, CheckCircle, Snowflake, Settings, Zap, MessageCircleDashed as MessageCircle, Calendar, ThermometerSun, Wind, Droplets} from 'lucide-react'
 import { lumi } from '../lib/lumi'
 
 interface Product {

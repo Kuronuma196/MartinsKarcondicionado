@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import {Award, Users, Shield, Clock, Heart, Target, Zap, CheckCircle, Star, Phone, Mail, MapPin} from 'lucide-react'
+import {Award, Users, Shield, Heart, Target, Zap, CheckCircle, Star, Phone, Mail, MapPin} from 'lucide-react'
 
 const About: React.FC = () => {
   const values = [
