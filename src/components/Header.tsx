@@ -42,6 +42,8 @@ const Header: React.FC = () => {
     { label: 'Agendar', path: '/agendamento' },
     { label: 'Contato', path: '/contato' },
   ]
+  // Compatibilidade com deploys anteriores que usavam este nome.
+  const quickAccessMenu = publicQuickLinks
 
   const userQuickLinks = [
     { label: 'Meu Perfil', path: '/perfil' },
@@ -493,7 +495,7 @@ const Header: React.FC = () => {
             <div className="flex items-center gap-6 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
               <div className="inline-flex items-center gap-3">
                 <span className="rounded-full bg-white/15 px-2 py-1 text-[10px] font-semibold tracking-wider text-white/90">Público</span>
-                {publicQuickLinks.map((item) => (
+                {quickAccessMenu.map((item) => (
                   <Link key={item.label} to={item.path} className="text-white/85 hover:text-white transition-colors">
                     {item.label}
                   </Link>
