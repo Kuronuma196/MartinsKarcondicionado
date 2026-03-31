@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import {ArrowRight, Phone, Star, Shield, Award, Users, Clock, CheckCircle, Snowflake, Settings, Zap, MessageCircleDashed as MessageCircle, Calendar, Wrench, ThermometerSun, Wind, Droplets} from 'lucide-react'
+import {ArrowRight, Phone, Star, Shield, Award, Users, Clock, CheckCircle, Snowflake, Settings, Zap, MessageCircleDashed as MessageCircle, Calendar, ThermometerSun, Wind, Droplets} from 'lucide-react'
 import { lumi } from '../lib/lumi'
 
 interface Product {
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
   const heroFeatures = [
     {
       icon: Shield,
-      title: '4 Anos de Experiência',
+      title: '3 Anos de Experiência',
       description: 'Especialistas em climatização'
     },
     {
@@ -80,9 +80,9 @@ const Home: React.FC = () => {
   ]
 
   const stats = [
-    { number: '450+', label: 'Clientes Satisfeitos', icon: Users },
-    { number: '4+', label: 'Anos de Experiência', icon: Award },
-    { number: '100%', label: 'Garantia nos Serviços', icon: Shield },
+    { number: '93%', label: 'Satisfação Garantida', icon: Users },
+    { number: '3+', label: 'Anos de Experiência', icon: Award },
+    { number: 'Familiar', label: 'Equipe Técnica', icon: Shield },
     { number: '24h', label: 'Suporte Disponível', icon: Clock }
   ]
 
@@ -161,7 +161,7 @@ const Home: React.FC = () => {
                 Conforto <span className="text-blue-300">Térmico</span> Para Sua Vida
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 leading-relaxed">
-                Especialistas em climatização há mais de 15 anos. Instalação, manutenção e reparo 
+                Especialistas em climatização há mais de 3 anos. Instalação, manutenção e reparo 
                 de ar-condicionado com garantia e qualidade incomparáveis.
               </p>
               
@@ -180,6 +180,18 @@ const Home: React.FC = () => {
                   <Phone className="h-5 w-5 mr-2" />
                   (43) 98837-9365
                 </a>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-3 pt-2">
+                <div className="bg-white/15 border border-white/20 rounded-lg px-3 py-2 text-sm text-center">
+                  Resposta em até 15 min
+                </div>
+                <div className="bg-white/15 border border-white/20 rounded-lg px-3 py-2 text-sm text-center">
+                  Atendimento em Londrina e região
+                </div>
+                <div className="bg-white/15 border border-white/20 rounded-lg px-3 py-2 text-sm text-center">
+                  Parcelamento facilitado
+                </div>
               </div>
 
               <div className="grid grid-cols-3 gap-6 pt-8">
@@ -205,6 +217,14 @@ const Home: React.FC = () => {
               transition={{ delay: 0.3 }}
               className="relative"
             >
+              <div className="mb-6 rounded-2xl overflow-hidden border border-white/30 shadow-2xl">
+                <img
+                  src="/como-instalar-ar-condicionado.jpeg"
+                  alt="Ambiente interno com ar-condicionado instalado"
+                  className="w-full h-56 object-cover"
+                />
+              </div>
+
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <h3 className="text-2xl font-bold mb-6">Orçamento Gratuito</h3>
                 <div className="space-y-4 text-blue-100">
