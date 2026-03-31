@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {Menu, X, MapPin, ShoppingCart, User, Settings, Package, ClipboardList, LogOut, UserCheck, Search, Clock3, Cloud} from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
+import { useUserRole } from '../hooks/useUserRole'
 import SearchResults from './SearchResults'
 
 const Header: React.FC = () => {
@@ -16,6 +17,7 @@ const Header: React.FC = () => {
   const [temperature, setTemperature] = useState<number | null>(null)
   const location = useLocation()
   const { user, isAuthenticated, signIn, signOut } = useAuth()
+  const { role } = useUserRole()
 
   const isActive = (path: string) => location.pathname === path
 
@@ -33,17 +35,13 @@ const Header: React.FC = () => {
     { path: '/admin/equipamentos', label: 'Equipamentos', icon: Settings },
   ]
 
-  const isAdmin = user?.email === 'kuronumadeal@gmail.com' || user?.email === 'martinskarcondicionado@gmail.com'
+  const isAdmin = role === 'admin' || role === 'founder'
+  const isTechnician = role === 'technician'
+  const isSupplier = role === 'supplier'
 
   const publicQuickLinks = [
     { label: 'Sobre', path: '/sobre' },
-    { label: 'Serviços', path: '/servicos' },
-    { label: 'Produtos', path: '/produtos' },
-    { label: 'Agendar', path: '/agendamento' },
-    { label: 'Contato', path: '/contato' },
   ]
-  // Compatibilidade com deploys anteriores que usavam este nome.
-  const quickAccessMenu = publicQuickLinks
 
   const userQuickLinks = [
     { label: 'Meu Perfil', path: '/perfil' },
@@ -57,6 +55,16 @@ const Header: React.FC = () => {
     { label: 'Produtos', path: '/admin/produtos' },
     { label: 'Usuários', path: '/admin/usuarios' },
     { label: 'Equipamentos', path: '/admin/equipamentos' },
+  ]
+
+  const technicianQuickLinks = [
+    { label: 'Painel Técnico', path: '/painel-tecnico' },
+    { label: 'Agenda', path: '/agendamento' },
+  ]
+
+  const supplierQuickLinks = [
+    { label: 'Portal Fornecedor', path: '/portal-fornecedor' },
+    { label: 'Contato', path: '/contato' },
   ]
 
   const handleSearch = (e: React.FormEvent) => {
@@ -495,7 +503,7 @@ const Header: React.FC = () => {
             <div className="flex items-center gap-6 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
               <div className="inline-flex items-center gap-3">
                 <span className="rounded-full bg-white/15 px-2 py-1 text-[10px] font-semibold tracking-wider text-white/90">Público</span>
-                {quickAccessMenu.map((item) => (
+                {publicQuickLinks.map((item) => (
                   <Link key={item.label} to={item.path} className="text-white/85 hover:text-white transition-colors">
                     {item.label}
                   </Link>
@@ -523,20 +531,27 @@ const Header: React.FC = () => {
                   ))}
                 </div>
               )}
-            </div>
 
-            <div className="hidden xl:flex items-center gap-5 text-sm text-white/85 shrink-0">
-              <a href="tel:+5543988379365" className="hover:text-white transition-colors">Contato</a>
-              <Link to="/contato" className="hover:text-white transition-colors">Ajuda</Link>
-              {isAuthenticated ? (
-                <Link to="/carrinho" className="hover:text-white transition-colors">Carrinho</Link>
-              ) : (
-                <button
-                  onClick={signIn}
-                  className="hover:text-white transition-colors"
-                >
-                  Entrar para ações
-                </button>
+              {isTechnician && (
+                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
+                  <span className="rounded-full bg-cyan-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-cyan-100">Técnico</span>
+                  {technicianQuickLinks.map((item) => (
+                    <Link key={item.label} to={item.path} className="text-cyan-100 hover:text-white transition-colors">
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {isSupplier && (
+                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
+                  <span className="rounded-full bg-emerald-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-emerald-100">Fornecedor</span>
+                  {supplierQuickLinks.map((item) => (
+                    <Link key={item.label} to={item.path} className="text-emerald-100 hover:text-white transition-colors">
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               )}
             </div>
           </div>

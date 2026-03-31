@@ -1,16 +1,14 @@
-
-    
-    
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
-import { useUserRole } from '../hooks/useUserRole'
+import { useUserRole, type UserRole } from '../hooks/useUserRole'
 
-interface AdminRouteProps {
+interface RoleRouteProps {
   children: React.ReactNode
+  allowedRoles: UserRole[]
 }
 
-const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
+const RoleRoute: React.FC<RoleRouteProps> = ({ children, allowedRoles }) => {
   const { isAuthenticated } = useAuth()
   const { role, loadingRole } = useUserRole()
 
@@ -26,14 +24,11 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
     )
   }
 
-  if (!(role === 'admin' || role === 'founder')) {
+  if (!allowedRoles.includes(role)) {
     return <Navigate to="/" replace />
   }
 
   return <>{children}</>
 }
 
-export default AdminRoute
-
-    
-    
+export default RoleRoute
