@@ -411,6 +411,31 @@ const Header: React.FC = () => {
             </form>
           </div>
 
+          {/* Secondary Navigation Strip */}
+          <div className="hidden md:block bg-gradient-to-r from-blue-800 via-indigo-800 to-violet-800 text-white border-t border-indigo-300/40 mt-3 rounded-lg">
+            <div className="px-3 lg:px-4">
+              <div className="flex items-center justify-between py-2 gap-3">
+                <div className="flex items-center gap-4 lg:gap-5 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
+                  {quickAccessMenu.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.path}
+                      className="text-white/85 hover:text-white transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="hidden xl:flex items-center gap-5 text-sm text-white/85 shrink-0">
+                  <a href="tel:+5543988379365" className="hover:text-white transition-colors">Contato</a>
+                  <Link to="/contato" className="hover:text-white transition-colors">Ajuda</Link>
+                  <Link to="/carrinho" className="hover:text-white transition-colors">Carrinho</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <motion.nav
