@@ -67,6 +67,49 @@ const Header: React.FC = () => {
     { label: 'Contato', path: '/contato' },
   ]
 
+  const quickAccessMenu = [
+    {
+      key: 'public',
+      label: 'Público',
+      links: publicQuickLinks,
+      accentClass: 'bg-white/15 text-white/90',
+      linkClass: 'text-white/85 hover:text-white',
+      show: true,
+    },
+    {
+      key: 'client',
+      label: 'Cliente',
+      links: userQuickLinks,
+      accentClass: 'bg-blue-300/20 text-blue-100',
+      linkClass: 'text-blue-100 hover:text-white',
+      show: isAuthenticated,
+    },
+    {
+      key: 'admin',
+      label: 'Admin',
+      links: adminQuickLinks,
+      accentClass: 'bg-violet-300/20 text-violet-100',
+      linkClass: 'text-violet-100 hover:text-white',
+      show: isAdmin,
+    },
+    {
+      key: 'technician',
+      label: 'Técnico',
+      links: technicianQuickLinks,
+      accentClass: 'bg-cyan-300/20 text-cyan-100',
+      linkClass: 'text-cyan-100 hover:text-white',
+      show: isTechnician,
+    },
+    {
+      key: 'supplier',
+      label: 'Fornecedor',
+      links: supplierQuickLinks,
+      accentClass: 'bg-emerald-300/20 text-emerald-100',
+      linkClass: 'text-emerald-100 hover:text-white',
+      show: isSupplier,
+    },
+  ].filter((section) => section.show)
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (searchTerm.trim()) {
@@ -501,58 +544,21 @@ const Header: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-2 gap-3">
             <div className="flex items-center gap-6 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
-              <div className="inline-flex items-center gap-3">
-                <span className="rounded-full bg-white/15 px-2 py-1 text-[10px] font-semibold tracking-wider text-white/90">Público</span>
-                {publicQuickLinks.map((item) => (
-                  <Link key={item.label} to={item.path} className="text-white/85 hover:text-white transition-colors">
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-
-              {isAuthenticated && (
-                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
-                  <span className="rounded-full bg-blue-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-blue-100">Cliente</span>
-                  {userQuickLinks.map((item) => (
-                    <Link key={item.label} to={item.path} className="text-blue-100 hover:text-white transition-colors">
+              {quickAccessMenu.map((section, sectionIndex) => (
+                <div
+                  key={section.key}
+                  className={`inline-flex items-center gap-3 ${sectionIndex > 0 ? 'border-l border-white/20 pl-5' : ''}`}
+                >
+                  <span className={`rounded-full px-2 py-1 text-[10px] font-semibold tracking-wider ${section.accentClass}`}>
+                    {section.label}
+                  </span>
+                  {section.links.map((item) => (
+                    <Link key={item.label} to={item.path} className={`${section.linkClass} transition-colors`}>
                       {item.label}
                     </Link>
                   ))}
                 </div>
-              )}
-
-              {isAdmin && (
-                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
-                  <span className="rounded-full bg-violet-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-violet-100">Admin</span>
-                  {adminQuickLinks.map((item) => (
-                    <Link key={item.label} to={item.path} className="text-violet-100 hover:text-white transition-colors">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-              {isTechnician && (
-                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
-                  <span className="rounded-full bg-cyan-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-cyan-100">Técnico</span>
-                  {technicianQuickLinks.map((item) => (
-                    <Link key={item.label} to={item.path} className="text-cyan-100 hover:text-white transition-colors">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-              {isSupplier && (
-                <div className="inline-flex items-center gap-3 border-l border-white/20 pl-5">
-                  <span className="rounded-full bg-emerald-300/20 px-2 py-1 text-[10px] font-semibold tracking-wider text-emerald-100">Fornecedor</span>
-                  {supplierQuickLinks.map((item) => (
-                    <Link key={item.label} to={item.path} className="text-emerald-100 hover:text-white transition-colors">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              ))}
             </div>
           </div>
         </div>
