@@ -140,6 +140,7 @@ const UserProfile: React.FC = () => {
       } else {
         const newProfile = await lumi.entities.user_profiles.create({
           ...profileData,
+          role: 'client',
           creator: 'user',
           created_at: new Date().toISOString()
         })

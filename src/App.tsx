@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import ProtectedRoute from './components/ProtectedRoute'
 import AdminRoute from './components/AdminRoute'
+import RoleRoute from './components/RoleRoute'
 
 // Public Pages
 import Home from './pages/Home'
@@ -14,6 +15,8 @@ import Products from './pages/Products'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Appointments from './pages/Appointments'
+import TechnicianPanel from './pages/TechnicianPanel'
+import SupplierPortal from './pages/SupplierPortal'
 
 // User Pages
 import Cart from './pages/Cart'
@@ -66,6 +69,16 @@ function App() {
               <Route path="/sobre" element={<About />} />
               <Route path="/contato" element={<Contact />} />
               <Route path="/agendamento" element={<Appointments />} />
+              <Route path="/painel-tecnico" element={
+                <RoleRoute allowedRoles={['technician', 'admin', 'founder']}>
+                  <TechnicianPanel />
+                </RoleRoute>
+              } />
+              <Route path="/portal-fornecedor" element={
+                <RoleRoute allowedRoles={['supplier', 'admin', 'founder']}>
+                  <SupplierPortal />
+                </RoleRoute>
+              } />
 
               {/* Protected User Routes */}
               <Route path="/carrinho" element={
