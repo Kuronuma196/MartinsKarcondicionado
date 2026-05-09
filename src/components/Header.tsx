@@ -42,6 +42,10 @@ const Header: React.FC = () => {
   const publicQuickLinks = [
     { label: 'Sobre', path: '/sobre' },
   ]
+  const topUtilityLinks = [
+    { label: 'Contato', path: '/contato' },
+    { label: 'Ajuda', path: '/sobre' },
+  ]
 
   const userQuickLinks = [
     { label: 'Meu Perfil', path: '/perfil' },
@@ -199,9 +203,9 @@ const Header: React.FC = () => {
     <>
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/30 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]">
         {/* Top Bar */}
-        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-violet-700 text-white border-b border-indigo-300/40">
+        <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-violet-900 text-white border-b border-indigo-300/40">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 py-1.5 text-xs sm:text-sm">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 py-2 text-xs sm:text-sm">
               <div className="inline-flex items-center gap-2 min-w-0">
                 <Clock3 className="h-3.5 w-3.5 text-blue-100 shrink-0" />
                 <span className="capitalize">{currentDateTime} BRT</span>
@@ -217,6 +221,18 @@ const Header: React.FC = () => {
                     Clima: {weatherLabel}
                     {temperature !== null ? `, ${temperature}°C` : ''}
                   </span>
+                </div>
+                <div className="inline-flex items-center gap-4 border-l border-white/25 pl-4">
+                  {topUtilityLinks.map((item) => (
+                    <Link key={item.label} to={item.path} className="text-indigo-100 hover:text-white transition-colors">
+                      {item.label}
+                    </Link>
+                  ))}
+                  {isAuthenticated && (
+                    <Link to="/carrinho" className="text-indigo-100 hover:text-white transition-colors">
+                      Carrinho
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -540,7 +556,7 @@ const Header: React.FC = () => {
       </header>
 
       {/* Third Bar - Role-based Navigation */}
-      <div className="hidden md:block bg-gradient-to-r from-blue-800 via-indigo-800 to-violet-800 text-white border-y border-indigo-300/40">
+      <div className="hidden md:block bg-gradient-to-r from-blue-700 via-indigo-700 to-violet-700 text-white border-y border-indigo-300/40">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-2 gap-3">
             <div className="flex items-center gap-6 text-xs lg:text-sm uppercase tracking-wide overflow-x-auto whitespace-nowrap pr-2">
