@@ -41,6 +41,7 @@ const Header: React.FC = () => {
 
   const publicQuickLinks = [
     { label: 'Sobre', path: '/sobre' },
+    { label: 'Carrinho', path: '/carrinho' },
   ]
   const topUtilityLinks = [
     { label: 'Contato', path: '/contato' },
@@ -228,11 +229,6 @@ const Header: React.FC = () => {
                       {item.label}
                     </Link>
                   ))}
-                  {isAuthenticated && (
-                    <Link to="/carrinho" className="text-indigo-100 hover:text-white transition-colors">
-                      Carrinho
-                    </Link>
-                  )}
                 </div>
               </div>
             </div>
