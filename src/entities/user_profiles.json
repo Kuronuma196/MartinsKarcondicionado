@@ -11,6 +11,11 @@
             "bsonType": "string",
             "description": "ID do usuário vinculado"
           },
+          "role": {
+            "bsonType": "string",
+            "enum": ["client", "technician", "supplier", "admin", "founder"],
+            "description": "Perfil de acesso do usuário"
+          },
           "full_name": {
             "bsonType": "string",
             "description": "Nome completo"
